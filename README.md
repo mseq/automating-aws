@@ -16,3 +16,4 @@ Repository for AWS Automation with Python
 - List contents of a bucket
 - Create and Setup a Bucket
 - Sync directory tree to bucket
+- Set AWS profile with --profile=<profileName>
