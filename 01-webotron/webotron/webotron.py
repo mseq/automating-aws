@@ -37,7 +37,6 @@ def cli(profile):
     bucket_manager = BucketManager(session)
 
 
-
 @cli.command('list-buckets')
 def list_buckets():
     """List all s3 buckets."""
@@ -67,8 +66,9 @@ def setup_bucket(bucket):
 @click.argument('bucket')
 def sync(pathname, bucket):
     """Sync contents of PATHNAME to BUCKET."""
-    bucket_manager.s3.Bucket(bucket)
+    # bucket_manager.s3.Bucket(bucket)
     bucket_manager.sync(pathname, bucket)
+    print(bucket_manager.get_bucket_url(bucket_manager.s3.Bucket(bucket)))
 
 
 if __name__ == '__main__':
