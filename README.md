@@ -23,7 +23,8 @@ registered domain
 
 ## 02-notifon
 
- Notifon is a script that...
+ Notifon is a project to notify slack users of changes to your AWS account
+ using CloudWatch Events
 
 ### Notifon Features
 
