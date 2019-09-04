@@ -28,4 +28,4 @@ registered domain
 
 ### Notifon Features
 
- Notifon currently has the following fetaures:
+- Send notifon to Slack when cloudwatch events happen.
