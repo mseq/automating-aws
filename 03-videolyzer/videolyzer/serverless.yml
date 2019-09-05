@@ -26,6 +26,32 @@ provider:
   profile: ${file(../config.${self:provider.stage}.json):videolyzer.profile}
   region: us-east-2
 
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - "rekognition:*"
+      Resource: "*"
+#     Resource: { "Fn:Join": ["", ["arn:aws:s3:::", { "Ref" : ${file(../config.${self:provider.stage}.json):videolyzer.videos_bucket} }]]}
+    - Effect: "Allow"
+      Action:
+        - "s3:GetObject"
+      Resource: 
+        - Fn::Join:
+          - ''
+          - - ${self:custom.videosBucketArn}
+            - '/*'
+
+custom:
+  videosBucketArn:
+    Fn::Join:
+      - ':'
+      - - arn
+        - aws
+        - s3
+        - ''
+        - ''
+        - ${file(../config.${self:provider.stage}.json):videolyzer.videos_bucket}
+
 # you can overwrite defaults here
 #  stage: dev
 #  region: us-east-1
@@ -64,7 +90,7 @@ functions:
     handler: handler.start_processing_video
     events:
       - s3:
-          bucket: ${file(../config.${self:provider.stage}.json):videolyzer.videos_bucket}
+          bucket: ${self:custom.videosBucketArn}
           event: s3:ObjectCreated:*
           rules:
             - suffix: .mp4
