@@ -29,3 +29,15 @@ registered domain
 ### Notifon Features
 
 - Send notifon to Slack when cloudwatch events happen.
+
+## 03-videolyzer
+
+ Videolizer does a video analysis using AWS Rekognition. Is is triggered by 
+ video uploads to S3, and insert the Labels detected by Rekognition on a
+ DynamoDB table.
+
+### Videolyzer Features
+
+- StartVideoProcessing using Lambda function when new video is uploaded to S3
+- HandleLabelDetection using Lambda function when Rekognition finishes the analysis 
+and insert the result data on DynamoDB Table.
